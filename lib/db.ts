@@ -17,7 +17,6 @@ export function getDbPool(): Pool {
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 5000,
       };
-      console.log("Database config:", config);
       pool = new Pool(config);
     } else if (process.env.DATABASE_URL) {
       pool = new Pool({

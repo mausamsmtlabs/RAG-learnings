@@ -1,4 +1,4 @@
-import { createEmbeddings } from "@/lib/embedding";
+import { createEmbeddings } from "@/lib/llm";
 import { searchSimilarChunks } from "@/lib/search";
 import { NextRequest } from "next/server";
 
@@ -16,7 +16,11 @@ export async function POST(request: NextRequest) {
         if (!chunks || chunks.length == 0) {
             return Response.json({ error: "No chunks found" }, { status: 404 })
         }
-        return Response.json({ chunks });
+        return Response.json({
+            question: body?.question,
+            chunks,
+            questionEmbeddings: questionEmbedding
+        });
     } catch (error: any) {
         return Response.json({
             error: error.message || "Failed to search chunks",

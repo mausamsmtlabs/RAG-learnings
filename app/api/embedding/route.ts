@@ -1,4 +1,4 @@
-import { createEmbeddings } from "../../../lib/embedding";
+import { createEmbeddings } from "@/lib/llm";
 import { checkDbConnection, saveEmbeddingToDb } from "../../../lib/db";
 
 export async function GET() {
